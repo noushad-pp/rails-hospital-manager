@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  department: one
+  employee_type: MyString
+  degrees: MyString
+  registration_no: MyString
+  consultation_charge: 1.5
+  address: MyString
+  phone: MyString
+  email: MyString
+  employee_role: one
+  joining_date: 2018-04-25
+  leaving_date: 2018-04-25
+  salary: 1.5
+  additional_info: MyString
+
+two:
+  name: MyString
+  department: two
+  employee_type: MyString
+  degrees: MyString
+  registration_no: MyString
+  consultation_charge: 1.5
+  address: MyString
+  phone: MyString
+  email: MyString
+  employee_role: two
+  joining_date: 2018-04-25
+  leaving_date: 2018-04-25
+  salary: 1.5
+  additional_info: MyString

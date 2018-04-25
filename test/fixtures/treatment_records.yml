@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  patient: one
+  admission: one
+  employee: one
+  diagnosis: one
+  prescription: one
+
+two:
+  type: 
+  patient: two
+  admission: two
+  employee: two
+  diagnosis: two
+  prescription: two

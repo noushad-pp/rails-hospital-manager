@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  room_type: MyString
+  charge: 1.5
+
+two:
+  name: MyString
+  type: 
+  room_type: MyString
+  charge: 1.5

@@ -17,10 +17,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_admin_datetimepicker'
 gem 'activeadmin_addons'
+gem 'arctic_admin'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'responders'
 gem 'cloudinary'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

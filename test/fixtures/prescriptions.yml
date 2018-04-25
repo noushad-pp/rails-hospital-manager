@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prescription: MyString
+  duration: 1
+  attachments: one
+
+two:
+  prescription: MyString
+  duration: 1
+  attachments: two

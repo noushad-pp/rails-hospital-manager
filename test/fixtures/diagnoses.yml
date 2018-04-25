@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symptoms: MyString
+  obserations: MyString
+  attachments: one
+
+two:
+  symptoms: MyString
+  obserations: MyString
+  attachments: two
