@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427115040) do
+ActiveRecord::Schema.define(version: 20180427225442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20180427115040) do
   end
 
   create_table "diagnoses", force: :cascade do |t|
-    t.string "symptoms"
-    t.string "obserations"
+    t.text "symptoms"
+    t.text "observations"
     t.bigint "attachments_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20180427115040) do
     t.string "degrees"
     t.string "registration_no"
     t.float "consultation_charge"
-    t.string "address"
+    t.text "address"
     t.string "phone"
     t.string "email"
     t.bigint "employee_role_id"
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20180427115040) do
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.string "prescription"
+    t.text "prescription"
     t.integer "duration"
     t.bigint "attachments_id"
     t.datetime "created_at", null: false
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20180427115040) do
   end
 
   create_table "treatment_records", force: :cascade do |t|
-    t.string "type"
+    t.string "treatment_type"
     t.bigint "patient_id"
     t.bigint "admission_id"
     t.bigint "employee_id"
@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20180427115040) do
     t.bigint "prescription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "treatment_date"
     t.index ["admission_id"], name: "index_treatment_records_on_admission_id"
     t.index ["diagnosis_id"], name: "index_treatment_records_on_diagnosis_id"
     t.index ["employee_id"], name: "index_treatment_records_on_employee_id"

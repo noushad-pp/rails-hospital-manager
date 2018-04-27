@@ -20,4 +20,10 @@ $primary-color: #2dbb43;
 //
 //   .status_tag { background: #6090DB; }
 
+.site_title { overflow: hidden}
+
+.has_many_fields ol {
+  display: flex;
+}
+
 .footer { display: none; }

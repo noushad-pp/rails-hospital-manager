@@ -15,4 +15,38 @@ ActiveAdmin.register Patient do
 
     f.actions
   end
+
+  index do
+    selectable_column
+    column "Patient No"  do |patient| patient.id end
+    column :name
+    column :gender
+    column :address
+    column :phone
+    column :email
+    column :image do |patient|
+      image_tag patient.image.url(:thumb)
+    end
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :gender
+      row :email
+      row :phone
+      row :address
+      row :dob
+      row :image do |patient|
+        image_tag patient.image.url(:big_thumb)
+      end
+    end
+  end
+
+  filter :name
+  filter :phone
+  filter :address
+  filter :email
+  filter :dob
 end

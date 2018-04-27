@@ -7,7 +7,7 @@ ActiveAdmin.register RoomType do
       f.input :name
       f.input :description, :input_html => { :rows => 5 }
       f.input :room_type
-      f.input :charge, as: :number
+      f.input :charge
     end
 
     f.actions

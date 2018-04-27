@@ -1,3 +1,6 @@
 class Diagnosis < ApplicationRecord
-  belongs_to :attachments
+  has_many :attachments, as: :attachable, dependent: :destroy
+  accepts_nested_attributes_for :attachments
+
+  mount_uploader :url, ImageUploader
 end

@@ -32,7 +32,45 @@ ActiveAdmin.register Employee do
     column :employee_type
     column :phone
     column :email
+    column :image do |employee|
+      image_tag employee.image.url(:thumb)
+    end
     actions
   end
+
+  show do
+    attributes_table do
+      row :name
+      row :gender
+      row :email
+      row :phone
+      row :address
+      row :dob
+      row :degrees
+      row :department
+      row :employee_role
+      row :employee_type
+      row :salary
+      row :consultation_charge
+      row :joining_date
+      row :leaving_date
+      row :additional_info
+      row :image do |patient|
+        image_tag patient.image.url(:big_thumb)
+      end
+    end
+  end
+
+  filter :department
+  filter :employee_role
+  filter :name
+  filter :phone
+  filter :address
+  filter :email
+  filter :dob
+  filter :address
+  filter :salary
+  filter :joining_date
+  filter :leaving_date
 
 end

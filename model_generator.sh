@@ -9,7 +9,7 @@ rails g model Patient name:string email:string gender:string phone:string addres
 rails g model RoomType name:string description:text room_type:string charge:float
 rails g model Room name:string status:string room_type:references
 rails g model Admission patient:references admission_date:date discharge_date:date room:references status:string
-rails g model Diagnosis symptoms:text obserations:text attachments:references
+rails g model Diagnosis symptoms:text observations:text attachments:references
 rails g model Prescription prescription:text duration:integer attachments:references
 rails g model TreatmentRecord treatment_type:string patient:references admission:references employee:references diagnosis:references prescription:references
 rails g model BillItem bill_type:string rate:float quantity:float amount:float

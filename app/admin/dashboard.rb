@@ -16,7 +16,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Admissions" do
           table_for Admission.order("id desc").limit(10) do
-            column("Patient") { |admission| link_to(admission.patient_id, admin_user_path(patient)) }
+            column("Patient") { |admission| link_to(admission.patient_id, admin_patient_path(patient)) }
             column("Admitted On") { |admission| admission.admission_date }
             column("Status") { |admission| admission.status }
           end
@@ -32,10 +32,9 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Rooms" do
           table_for Room.order("id desc").limit(10) do
-            column("Room No") { |room| link_to(room.name, admin_user_path(room)) }
-            column("Type") { |room| room.type }
-            column("Status") { |room| room.status }
-            column("Charge") { |room| room.charge }
+            column("Room No") { |room| link_to(room.name, admin_room_path(room)) }
+            column("Type") { |room| room.room_type.room_type }
+            column("Charge") { |room| room.room_type.charge }
           end
 
           if Room.count == 0
