@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425094134) do
+ActiveRecord::Schema.define(version: 20180427115040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,9 +136,12 @@ ActiveRecord::Schema.define(version: 20180425094134) do
     t.date "joining_date"
     t.date "leaving_date"
     t.float "salary"
-    t.string "additional_info"
+    t.text "additional_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gender"
+    t.date "dob"
+    t.string "image"
     t.index ["department_id"], name: "index_employees_on_department_id"
     t.index ["employee_role_id"], name: "index_employees_on_employee_role_id"
   end
@@ -185,13 +188,22 @@ ActiveRecord::Schema.define(version: 20180425094134) do
     t.index ["attachments_id"], name: "index_prescriptions_on_attachments_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
+  create_table "room_types", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.text "description"
     t.string "room_type"
     t.float "charge"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_rooms_on_room_type_id"
   end
 
   create_table "treatment_records", force: :cascade do |t|

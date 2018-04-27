@@ -21,6 +21,7 @@ gem 'arctic_admin'
 gem 'inherited_resources'
 gem 'has_scope'
 gem 'responders'
+gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
 

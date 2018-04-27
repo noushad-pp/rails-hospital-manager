@@ -1,0 +1,21 @@
+
+development:
+  cloud_name: noushadpp
+  api_key: '656456272582374'
+  api_secret: 3Ey3sY5dQb70-igLjRVaKu48k9s
+  enhance_image_tag: true
+  static_image_support: false
+
+production:
+  cloud_name: noushadpp
+  api_key: '656456272582374'
+  api_secret: 3Ey3sY5dQb70-igLjRVaKu48k9s
+  enhance_image_tag: true
+  static_image_support: true
+
+test:
+  cloud_name: noushadpp
+  api_key: '656456272582374'
+  api_secret: 3Ey3sY5dQb70-igLjRVaKu48k9s
+  enhance_image_tag: true
+  static_image_support: false

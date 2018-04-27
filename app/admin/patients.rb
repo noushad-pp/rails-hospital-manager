@@ -1,15 +1,18 @@
 ActiveAdmin.register Patient do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :id, :name, :email, :gender, :phone, :address, :dob, :image
 
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs do
+      f.input :name
+      f.input :email, as: :email
+      f.input :gender, :as => :select, :collection => [ 'MALE', 'FEMALE', 'OTHER'], :selected => "MALE"
+      f.input :phone
+      f.input :address, :input_html => { :rows => 5 }
+      f.input :dob, as: :date_time_picker
+      f.input :image, as: :file, :hint => f.object.image.present? ? image_tag(f.object.image.url(:big_thumb)) : content_tag(:span)
+    end
+
+    f.actions
+  end
 end

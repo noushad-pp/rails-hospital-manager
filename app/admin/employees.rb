@@ -1,15 +1,38 @@
 ActiveAdmin.register Employee do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :id, :name, :employee_role_id, :department_id, :employee_type, :phone, :address, :email, :gender, :additional_info, :degrees, :consultation_charge, :registration_no, :joining_date, :leaving_date, :dob, :salary, :image
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs do
+      f.input :department
+      f.input :employee_role
+      f.input :employee_type, :as => :select, :collection => Employee::EMPLOYEE_TYPE, :selected => Employee::EMPLOYEE_TYPE[0]
+      f.input :name
+      f.input :email, as: :email
+      f.input :gender, :as => :select, :collection => Employee::GENDER, :selected => Employee::GENDER[0]
+      f.input :phone
+      f.input :address, :input_html => { :rows => 5 }
+      f.input :dob, as: :date_time_picker
+      f.input :joining_date, as: :date_time_picker
+      f.input :leaving_date, as: :date_time_picker
+      f.input :salary
+      f.input :consultation_charge
+      f.input :image, as: :file, :hint => f.object.image.present? ? image_tag(f.object.image.url(:big_thumb)) : content_tag(:span)
+      f.input :additional_info, :input_html => { :rows => 5 }
+    end
+
+    f.actions
+  end
+
+  index do
+    selectable_column
+    column :name
+    column :department
+    column :employee_role
+    column :employee_type
+    column :phone
+    column :email
+    actions
+  end
 
 end
