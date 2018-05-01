@@ -24,6 +24,84 @@ $primary-color: #2dbb43;
 
 .has_many_fields ol {
   display: flex;
+  //flex-wrap: wrap;
+}
+
+.bill {
+  th {
+    padding: 10px 0;
+  }
+}
+
+.bill_item {
+   .select2-container, select, option {
+     min-width: 130px !important;
+     margin-right: 20px;
+   }
+
+  input {
+    width: 90% !important;
+  }
 }
 
 .footer { display: none; }
+
+.btn-submit {
+  background-color: #2dbb43;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  display: inline-block;
+  transition: border 0.2s linear, color 0.2s linear, width 0.2s linear, background-color 0.2s linear;
+  padding: 0 12px;
+  font-size: 15px;
+  font-weight: 500;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  cursor: pointer;
+  line-height: 30px;
+}
+
+.quick-actions-table {
+  td {
+    font-size: 16px;
+  }
+}
+
+.header {
+  .site_title {
+    width: 250px;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  #utility_nav {
+    width: calc(100% - 250px);
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .header {
+    #utility_nav {
+      width: calc(100% - 250px);
+    }
+
+    .site_title {
+      padding-left: 20px;
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #main_content {
+    .columns {
+      .column {
+        width: 100% !important;
+      }
+    }
+  }
+}
+

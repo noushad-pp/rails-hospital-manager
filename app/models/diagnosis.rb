@@ -1,4 +1,5 @@
 class Diagnosis < ApplicationRecord
+  belongs_to :treatment_record
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments
 

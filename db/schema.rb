@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427225442) do
+ActiveRecord::Schema.define(version: 20180501100120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,12 +69,15 @@ ActiveRecord::Schema.define(version: 20180427225442) do
   end
 
   create_table "bill_items", force: :cascade do |t|
-    t.string "type"
+    t.string "bill_type"
     t.float "rate"
     t.float "quantity"
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "description"
+    t.float "discount"
   end
 
   create_table "bill_templates", force: :cascade do |t|
@@ -111,7 +114,9 @@ ActiveRecord::Schema.define(version: 20180427225442) do
     t.bigint "attachments_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "treatment_record_id"
     t.index ["attachments_id"], name: "index_diagnoses_on_attachments_id"
+    t.index ["treatment_record_id"], name: "index_diagnoses_on_treatment_record_id"
   end
 
   create_table "employee_roles", force: :cascade do |t|
@@ -185,7 +190,9 @@ ActiveRecord::Schema.define(version: 20180427225442) do
     t.bigint "attachments_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "treatment_record_id"
     t.index ["attachments_id"], name: "index_prescriptions_on_attachments_id"
+    t.index ["treatment_record_id"], name: "index_prescriptions_on_treatment_record_id"
   end
 
   create_table "room_types", force: :cascade do |t|
@@ -203,6 +210,7 @@ ActiveRecord::Schema.define(version: 20180427225442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "room_type_id"
+    t.boolean "occupied"
     t.index ["room_type_id"], name: "index_rooms_on_room_type_id"
   end
 
@@ -211,16 +219,12 @@ ActiveRecord::Schema.define(version: 20180427225442) do
     t.bigint "patient_id"
     t.bigint "admission_id"
     t.bigint "employee_id"
-    t.bigint "diagnosis_id"
-    t.bigint "prescription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "treatment_date"
     t.index ["admission_id"], name: "index_treatment_records_on_admission_id"
-    t.index ["diagnosis_id"], name: "index_treatment_records_on_diagnosis_id"
     t.index ["employee_id"], name: "index_treatment_records_on_employee_id"
     t.index ["patient_id"], name: "index_treatment_records_on_patient_id"
-    t.index ["prescription_id"], name: "index_treatment_records_on_prescription_id"
   end
 
   add_foreign_key "admissions", "patients"
@@ -233,8 +237,6 @@ ActiveRecord::Schema.define(version: 20180427225442) do
   add_foreign_key "employees", "employee_roles"
   add_foreign_key "prescriptions", "attachments", column: "attachments_id"
   add_foreign_key "treatment_records", "admissions"
-  add_foreign_key "treatment_records", "diagnoses"
   add_foreign_key "treatment_records", "employees"
   add_foreign_key "treatment_records", "patients"
-  add_foreign_key "treatment_records", "prescriptions"
 end
