@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501100120) do
+ActiveRecord::Schema.define(version: 20180502081415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20180501100120) do
     t.string "title"
     t.string "description"
     t.float "discount"
+    t.bigint "bill_id"
+    t.index ["bill_id"], name: "index_bill_items_on_bill_id"
   end
 
   create_table "bill_templates", force: :cascade do |t|
@@ -95,10 +97,9 @@ ActiveRecord::Schema.define(version: 20180501100120) do
     t.string "payment_status"
     t.float "discount"
     t.float "tax"
-    t.bigint "bill_items_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bill_items_id"], name: "index_bills_on_bill_items_id"
+    t.date "billing_date"
     t.index ["patient_id"], name: "index_bills_on_patient_id"
   end
 
@@ -229,7 +230,6 @@ ActiveRecord::Schema.define(version: 20180501100120) do
 
   add_foreign_key "admissions", "patients"
   add_foreign_key "admissions", "rooms"
-  add_foreign_key "bills", "bill_items", column: "bill_items_id"
   add_foreign_key "bills", "patients"
   add_foreign_key "diagnoses", "attachments", column: "attachments_id"
   add_foreign_key "employee_roles", "departments"

@@ -4,6 +4,7 @@ ActiveAdmin.register TreatmentRecord do
                 prescription_attributes:[:prescription, :duration,  :id, :_destroy, attachments_attributes: [:url, :id, :_destroy]]
 
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :treatment_type, :collection => ['IP', 'OP'], :selected => "IP"
       f.input :patient
@@ -45,38 +46,42 @@ ActiveAdmin.register TreatmentRecord do
     actions
   end
 
-  show do
+  show do |treatment_record|
     tabs do
       tab 'Diagnosis' do
         attributes_table do
-          row "Symptoms" do |record|
-            record.diagnosis.symptoms
+          row "Symptoms" do
+            treatment_record.diagnosis.present? ? treatment_record.diagnosis.symptoms : ''
           end
-          row "Observations" do |record|
-            record.diagnosis.observations
+          row "Observations" do
+            treatment_record.diagnosis.present? ? treatment_record.diagnosis.observations : ''
           end
         end
 
-        table_for treatment_record.diagnosis.attachments do
-          column "Attachments" do |attachment|
-            link_to attachment.url, attachment.url.to_s
+        if treatment_record.diagnosis.present?
+          table_for treatment_record.diagnosis.attachments, cellpadding: 10 do
+            column "Attachments" do |attachment|
+              link_to attachment.url, attachment.url.to_s
+            end
           end
         end
       end
 
       tab 'Prescription' do
         attributes_table do
-          row "Prescription" do |record|
-            record.prescription.prescription
+          row "Prescription" do
+            treatment_record.prescription.present? ? treatment_record.prescription.prescription : ''
           end
-          row "Course Duration" do |record|
-            record.prescription.duration
+          row "Course Duration" do
+            treatment_record.prescription.present? ? treatment_record.prescription.duration : ''
           end
         end
 
-        table_for treatment_record.prescription.attachments do
-          column "Attachments" do |attachment|
-            link_to attachment.url, attachment.url.to_s
+        if treatment_record.prescription.present?
+          table_for treatment_record.prescription.attachments, cellpadding: 10 do
+            column "Attachments" do |attachment|
+              link_to attachment.url, attachment.url.to_s
+            end
           end
         end
       end

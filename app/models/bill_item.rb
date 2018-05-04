@@ -3,9 +3,12 @@ class BillItem < ApplicationRecord
 
   after_initialize :set_initial_data
 
+  validates_presence_of :bill_type
+  validates_presence_of :title
+
   def set_initial_data
-    self.discount = 0
-    self.rate = 0
-    self.quantity = 1
+    self.discount ||= 0
+    self.rate ||= 0
+    self.quantity ||= 1
   end
 end

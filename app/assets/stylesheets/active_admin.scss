@@ -22,6 +22,11 @@ $primary-color: #2dbb43;
 
 .site_title { overflow: hidden}
 
+li.select {
+  display: flex;
+  align-items: center;
+}
+
 .has_many_fields ol {
   display: flex;
   //flex-wrap: wrap;
@@ -33,13 +38,22 @@ $primary-color: #2dbb43;
   }
 }
 
-.bill_item {
+.bill_item, body.logged_in.edit .bill_item {
    .select2-container, select, option {
      min-width: 130px !important;
      margin-right: 20px;
    }
 
-  input {
+  .input.boolean {
+    margin-left: auto !important;
+
+    label {
+      display: inline-flex;
+      margin-right: 5px;
+    }
+  }
+
+  input:not([type='checkbox']) {
     width: 90% !important;
   }
 }
